@@ -62,5 +62,8 @@ def get_shell_command(question: str) -> str:
 
 
 if __name__ == "__main__":
-    input_string = sys.argv[1]
+    if len(sys.argv) == 1:
+        input_string = sys.argv[0]
+    else:
+        input_string = sys.argv[1]
     print(get_shell_command(input_string))
