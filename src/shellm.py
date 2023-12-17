@@ -22,8 +22,8 @@ LLM_MODEL = os.getenv("LLM_MODEL", "mistralai/mixtral-8x7b-instruct")
 def get_shell_command(question: str) -> str:
     """Get shell command from message."""
     content = (
-        f'[INST]Provide only a shell command for: "{question}". "
-        "Avoid providing additional text, only provide the shell command.[/INST]'
+        f'[INST]Provide only a shell command for: "{question}". '
+        "Avoid providing additional text, only provide the shell command.[/INST]"
     )
 
     response = requests.post(
