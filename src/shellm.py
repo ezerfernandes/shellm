@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """Initial version of shellm."""
 import json
 import os
