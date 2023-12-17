@@ -19,7 +19,10 @@ LLM_MODEL = os.getenv("LLM_MODEL", "mistralai/mixtral-8x7b-instruct")
 
 def get_shell_command(question: str) -> str:
     """Get shell command from message."""
-    content = f'[INST]Provide only a shell command for: "{question}". Avoid providing additional text, only provide the shell command.[/INST]'
+    content = (
+        f'[INST]Provide only a shell command for: "{question}". "
+        "Avoid providing additional text, only provide the shell command.[/INST]'
+    )
 
     response = requests.post(
         url="https://openrouter.ai/api/v1/chat/completions",
@@ -45,8 +48,11 @@ def get_shell_command(question: str) -> str:
 
     if answer.startswith("```bash"):
         answer = answer[7:]
-    if answer.startswith("```shell"):
+    elif answer.startswith("```shell"):
         answer = answer[8:]
+    elif answer.startswith("```"):
+        answer = answer[3:]
+
     if answer.endswith("```"):
         answer = answer[:-3]
 
